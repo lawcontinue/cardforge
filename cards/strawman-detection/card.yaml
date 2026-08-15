@@ -1,0 +1,20 @@
+id: strawman-detection
+name: "Strawman Detection — Three-Layer Location"
+one_liner: "Identify fallacies by first locating WHICH layer fails (position/evidence/reasoning), then naming the fallacy — never lead with the label."
+type_main: review
+type_sub: ["argumentation", "debate", "lint"]
+triggers: ["misrepresentation", "strawman", "so you're saying", "fallacy detection", "argument quality", "rebuttal review"]
+steps:
+  - "L1 position check: does the attacked claim match the source's actual words? Quote-diff the paraphrase against the original"
+  - "L2 evidence check: does the cited evidence actually support the claim being made?"
+  - "L3 reasoning check: does the path from evidence to position hold (false dilemma / slippery slope / circularity)?"
+  - "Only after layer location, name the pattern — and treat label-slinging itself as a failure mode"
+failure_conditions:
+  - "No verbatim source available (paraphrase-only contexts: L1 check impossible)"
+  - "Debate where both sides intentionally speak past each other"
+  - "Fallacy fallacy trap: detecting a fallacy does NOT falsify the conclusion — conclusions need independent evaluation"
+toolization: t1
+lint_rules: ["paraphrase-diff: flag attacked positions that don't match quoted source text"]
+source: "crucible debate #149 prep, 2026-08-15, 8-role debate system (original card #259)"
+confidence: 0.85
+related: ["decision-three-questions", "position-revision-incentive"]
