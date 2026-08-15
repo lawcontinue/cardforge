@@ -1,0 +1,20 @@
+id: position-revision-incentive
+name: "Position-Revision Incentive"
+one_liner: "Score and record position revisions, not victories — debate systems produce knowledge only when changing one's mind under evidence is the rewarded move."
+type_main: debate
+type_sub: ["multi-agent", "incentive-design", "governance"]
+triggers: ["debate system design", "agent argumentation", "multi-agent disagreement", "sycophancy", "debate scoring"]
+steps:
+  - "Record every position revision in the archive with the same weight as original contributions"
+  - "Grade revision QUALITY: structural revisions ('I was wrong because assumption X fails, because...') score A; social concessions ('you have a point too') score nothing"
+  - "Count revisions into standings — make high-quality revision a visible badge, not a stain"
+  - "Ensure information escalation: revisions must follow NEW information injection (opponent stances, rebuttal targets, weak-point directives) — else revisions are social"
+failure_conditions:
+  - "Revision inflation: rewarding revisions too easily breeds performative reversals — keep quality bar strict (structural/conditional/split revisions only)"
+  - "Power asymmetry: forced 'revision' by the weaker party is surrender, not progress — veto must be independent of revision scoring"
+  - "Revision != correctness: grading measures information content of the revision process; conclusions still need independent verification"
+toolization: t3
+lint_rules: []
+source: "crucible debate system, 148 sessions, formalized 2026-08-15 (original card #262)"
+confidence: 0.85
+related: ["blind-spot-field", "strawman-detection"]
