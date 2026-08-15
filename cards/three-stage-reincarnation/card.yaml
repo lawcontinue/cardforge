@@ -1,0 +1,20 @@
+id: three-stage-reincarnation
+name: "Three-Stage Reincarnation of Roles"
+one_liner: "What dies in 'personas are dead' is runtime entity-hood; roles reincarnate as build-time provenance, relational warmth, and interface blind-spot declarations."
+type_main: design
+type_sub: ["narrative", "multi-agent", "organizational"]
+triggers: ["persona vs skills", "role design", "de-roleing", "skills-based organization", "agent narrative", "persona backlash"]
+steps:
+  - "Kill only the runtime entity: role as capability container, dependency, or liability object — remove from the dependency graph"
+  - "Reincarnate #1 build-time provenance: signatures, source fields, tempering records as credibility signals"
+  - "Reincarnate #2 relational warmth: keep nameable, blameable interfaces at the human layer (users need someone to grumble at)"
+  - "Reincarnate #3 interface blind-spot: self-declared limitations as routing metadata"
+failure_conditions:
+  - "Unfalsifiable as a predictive theory (declared by its own authors) — use as a DESIGN framework, never cite as causal law"
+  - "Reincarnation != amnesty: role names re-entering the dependency graph remain architectural errors"
+  - "External roles (brand personas) invading internal architecture at scale — reject explicitly in CONTRIBUTING"
+toolization: t3
+lint_rules: []
+source: "crucible debate #149, 2026-08-15, 8-role system, 2S-grade contribution"
+confidence: 0.8
+related: ["runtime-buildtime-separation", "blind-spot-field", "position-revision-incentive"]
