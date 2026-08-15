@@ -35,6 +35,23 @@ absolute-claims-lint # "唯一/首个/最大" 无来源即警告
 decision-gates       # no-baseline / missing-opposition 门控
 ```
 
+## 使用
+
+```bash
+# 路由：问题 → 方法卡（零依赖，Python 3.9+）
+python3 router/cardforge_router.py "before committing to the architecture decision, go or no-go"
+# [t1]   4.9261  decision-three-questions  — Progressive Decision Three-Questions
+
+# Lint：确定性声明质检（T1 规则，CI 友好）
+python3 router/lint.py scan docs/decision.md          # 扫描绝对性声明/伪数量级/决策门控
+python3 router/lint.py diff --source src.txt --paraphrase attack.txt  # 稼草人检测
+
+# 测试（含双卡绑定校验）
+python3 -m pytest tests/ -q
+```
+
+**已知误报模式**（诚实披露）：确定性规则有盲区——规则自身文档含触发词（自指误报）、多义词（“张力未完全消解”的“完全”非绝对性声明）。因此 lint 输出是 **warn 不是 error**，CI 不阻塞；人来裁决。
+
 ## 架构
 
 ```
