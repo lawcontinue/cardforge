@@ -1,0 +1,31 @@
+# cardforge 方法论卡片 schema v1.0
+# 双卡绑定：cards/<id>/card.yaml（机器卡，路由器消费）+ cards/<id>/card.md（人读卡）
+# id 使用语义 slug（内容即 ID，天然防编号冲突）
+
+id: str          # 必填，语义 slug，如 "strawman-detection"
+name: str        # 必填，人类可读名
+one_liner: str   # 必填，一句话核心逻辑
+
+type_main: str   # 必填，主类型: decision | review | debate | design | architecture | analysis
+type_sub: [str]  # 可选，子类型标签
+
+triggers: [str]  # 必填，路由触发词（问题域关键词，≥3 个）
+steps: [str]     # 必填，执行步骤（可操作的指令序列，不是抽象原则）
+failure_conditions: [str]  # 必填，失效条件（本卡什么时候不该用/会出错）
+
+toolization: str # 必填，工具化层级: t1（纯规则可代码化）| t2（规则+LLM）| t3（人读方法论）
+lint_rules: [str]  # 可选，T1 卡附带的确定性规则名（供 claim-lint 调用）
+
+source: str      # 必填，淬炼出处（build-time provenance）——两种合法形态：
+                 #  ① 可达存档链接（公开辩论记录/issue/commit hash）
+                 #  ② 显式声明 private-system + 系统描述 + 日期（读者自行折价采信）
+                 #  裸自由文本不合规（见 CONTRIBUTING 锚点要求）
+confidence: float # 必填，0.0-1.0
+related: [str]   # 可选，关联卡 id（路由组合用）
+
+# --- card.md 对应结构（frontmatter 绑定 yaml）---
+# ---
+# id: <同 yaml id>
+# ---
+# ## 适用场景 / ## 核心逻辑 / ## 关键洞察 / ## 与已有方法论的关系 / ## 风险提示
+# 人读卡必须包含 ≥1 个真实案例和 ≥1 条诚实的风险提示（防"完美卡片"幻觉）
