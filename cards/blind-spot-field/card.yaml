@@ -1,0 +1,20 @@
+id: blind-spot-field
+name: "Blind-Spot Self-Declaration Field"
+one_liner: "Agent role definitions must declare blind spots (non-empty, specific, with mitigation) — blind spots are routing metadata, more informative than capability claims."
+type_main: design
+type_sub: ["multi-agent", "persona", "trust"]
+triggers: ["agent persona design", "multi-agent roles", "role definition", "sycophancy prevention", "trust routing"]
+steps:
+  - "For every role card, add blind_spots field: >=1 entry, cannot be empty (no blind spots = omniscient = dangerous)"
+  - "Each entry: specific limitation + failure mode + mitigation (who/what calibrates it)"
+  - "Use blind spots as trust-routing metadata: claims crossing a role's blind spot require cross-verification"
+  - "Recalibrate: blind spots drift as capabilities change — review with each retrospective"
+failure_conditions:
+  - "Pre-emptive liability shielding ('declared weak so don't blame me') — correct behavior on blind-spot trigger is HANDOFF, not persisting"
+  - "Declaration without running mitigation mechanism (no records, no cadence)"
+  - "Vague entries ('may be biased') — must be nameable failure modes"
+toolization: t3
+lint_rules: []
+source: "crucible system IDENTITY design, 8 roles all compliant, formalized 2026-08-15 (original card #261)"
+confidence: 0.85
+related: ["runtime-buildtime-separation", "three-stage-reincarnation"]
