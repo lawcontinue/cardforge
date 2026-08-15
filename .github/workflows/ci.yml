@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Tests (router + lint + dual-card binding)
+        run: |
+          python -m pip install pytest
+          python -m pytest tests/ -q
+
+      # Crit's acceptance challenge: "scan your own README with your own cards"
+      # Non-blocking by design: deterministic rules have known false-positive
+      # modes (self-referential docs, polysemous absolutes) — findings are
+      # surfaced as warnings, not build failures.
+      - name: Self-lint (non-blocking, findings surfaced)
+        continue-on-error: true
+        run: |
+          python router/lint.py scan README.md ROADMAP.md CONTRIBUTING.md || true
+
+  dual-chain:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Commit authors must be human identities (no role-name authors)
+        run: |
+          # Dual-chain separation: role names may appear in commit MESSAGES
+          # (provenance), never in the author/committer fields (liability).
+          # Extend ROLE_NAMES as the card library grows.
+          ROLE_NAMES="crit|athena|aria|shield|cepheus|qingnang|themis"
+          BAD=$(git log --format='%an %ae %cn %ce' | grep -iE "$ROLE_NAMES" || true)
+          if [ -n "$BAD" ]; then
+            echo "::error::Role-name identity found in author/committer fields (dual-chain violation): $BAD"
+            exit 1
+          fi
