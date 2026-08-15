@@ -1,0 +1,20 @@
+id: runtime-buildtime-separation
+name: "Runtime/Build-time Role Separation"
+one_liner: "One question splits safe from unsafe persona use: would CI break because of this role? Runtime roles are architectural debt; build-time roles are trust infrastructure."
+type_main: architecture
+type_sub: ["multi-agent", "governance", "provenance"]
+triggers: ["persona in CI", "agent role dependency", "accountability chain", "commit signing", "provenance", "agent liability"]
+steps:
+  - "Ask the split question: does this role name appear in the DEPENDENCY GRAPH? (system execution requires its performance to succeed)"
+  - "If yes -> runtime role -> untestable, incomposable, CI-fails-on-mood -> remove from dependency graph"
+  - "If no (it only marks source/warmth/blind spots) -> build-time role -> legal, keep as trust metadata"
+  - "Enforce dual-chain separation: liability chain zero roles (commit author = human identity, legal responsibility = legal entity); trust chain explicit roles (provenance signatures)"
+failure_conditions:
+  - "Gray zone: contributors committing under role names — role names may enter commit MESSAGES, never the author field (DCO)"
+  - "Layer erosion at scale: external brand personas invading internal architecture (PR pressure) — requires standing architecture review"
+  - "Moral overreach: runtime roles are not evil, just unauditable — in companion products the role IS the product; this separation applies to capability-architecture domains only"
+toolization: t3
+lint_rules: []
+source: "crucible debate #149 Phase 2 emergence, 2026-08-15, 2S-grade contribution"
+confidence: 0.85
+related: ["three-stage-reincarnation", "blind-spot-field"]
