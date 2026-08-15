@@ -1,0 +1,20 @@
+id: decision-three-questions
+name: "Progressive Decision Three-Questions"
+one_liner: "Match review depth to decision irreversibility: simple=Q1, medium=Q1+Q2, major=Q1+Q2+Q3 — baseline data, worst-3 outcomes, who objects."
+type_main: decision
+type_sub: ["governance", "risk", "lint"]
+triggers: ["technical choice", "architecture decision", "go no-go", "risk review", "before committing", "decision review"]
+steps:
+  - "Grade the decision on 3 axes (time cost / reversibility / blast radius) — take the most conservative axis"
+  - "Q1 baseline: name >=1 verifiable number/file/source; no baseline -> run minimal measurement FIRST; all estimates carry uncertainty (+-30% floor)"
+  - "Q2 worst-3: three SPECIFIC failure scenarios with trigger conditions (not 'could go wrong' hand-waving)"
+  - "Q3 opposition: >=1 concrete objector (person/role/future-self stance) + their reasoning; 'nobody objects' = either trivial or blind"
+failure_conditions:
+  - "Using Q1 to indefinitely defer deciding (data-request as avoidance) — Q1 output must have a time-box"
+  - "Applying all three questions to trivial reversible decisions (process bureaucracy)"
+  - "Reversing order: risk-listing without baseline data is imagination, constraints-free"
+toolization: t1
+lint_rules: ["no-baseline: decision doc lacking verifiable data reference", "missing-opposition: major-flagged decision lacking Q2/Q3"]
+source: "crucible system lead role SOAL, formalized 2026-08-15 (original card #260)"
+confidence: 0.9
+related: ["strawman-detection", "runtime-buildtime-separation"]
